@@ -1,0 +1,137 @@
+﻿<Window
+    x:Class="Mvvm.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Mvvm"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    Title="MainWindow"
+    Width="400"
+    Height="900"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <local:MyIndex x:Key="MyIndex" />
+        <x:Array x:Key="Leagues" Type="local:League">
+            <local:League />
+            <local:League />
+        </x:Array>
+    </Window.Resources>
+    <ScrollViewer>
+        <StackPanel>
+            <Border
+                Margin="2"
+                BorderBrush="DarkBlue"
+                BorderThickness="2">
+                <StackPanel>
+                    <TextBlock Text="{Binding}" />
+                    <!--<TextBlock Text="{DynamicResource}" />-->
+                    <!--<TextBlock Text="{MultiBinding}" />-->
+                    <TextBlock Text="{PriorityBinding}" />
+                    <!--<TextBlock Text="{StaticResource}" />-->
+                    <!--<TextBlock Text="{TemplateBinding}" />-->
+                    <!--<TextBlock Text="{d:DesignData}" />-->
+                    <!--<TextBlock Text="{d:DesignInstance}" />-->
+                    <!--<TextBlock Text="{d:SampleData}" />-->
+                    <!--<TextBlock Text="{local:}" />-->
+                    <!--<TextBlock Text="{mc:AlternateContent}" />-->
+                    <!--<TextBlock Text="{mc:Choice}" />-->
+                    <!--<TextBlock Text="{mc:Fallback}" />-->
+                    <!--<TextBlock Text="{x:Static}" />-->
+                    <!--<TextBlock Text="{x:Code}" />-->
+                    <!--<TextBlock Text="{x:Reference}" />-->
+                    <!--<TextBlock Text="{x:XData}" />-->
+                </StackPanel>
+            </Border>
+            <Border
+                Margin="2"
+                BorderBrush="DarkBlue"
+                BorderThickness="2">
+                <DockPanel>
+                    <Slider
+                        Name="Slider2"
+                        DockPanel.Dock="Top"
+                        Maximum="100"
+                        Minimum="0"
+                        RenderTransformOrigin="0.5,0.5"
+                        Value="20">
+                        <Slider.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="0.6" ScaleY="0.5" />
+                                <SkewTransform AngleX="11" />
+                                <RotateTransform />
+                                <TranslateTransform />
+                            </TransformGroup>
+                        </Slider.RenderTransform>
+                    </Slider>
+                    <TextBlock DockPanel.Dock="Top" Text="{Binding ElementName=Slider2, Path=Value}" />
+                    <TextBlock DockPanel.Dock="Top" Text="{Binding ElementName=Slider2, Path=FontFamily.LineSpacing}" />
+                    <TextBlock DockPanel.Dock="Top" Text="{Binding ElementName=Slider2, Path=FontFamily.FamilyNames.Count}" />
+                    <TextBlock DockPanel.Dock="Top" Text="{Binding ElementName=Slider2, Path=(DockPanel.Dock)}" />
+                    <TextBlock DockPanel.Dock="Top" Text="{Binding ElementName=Slider2, Path=RenderTransform.Children[0].ScaleX}" />
+                    <TextBlock DockPanel.Dock="Top" Text="{Binding ElementName=Slider2, Path=RenderTransform.Children[1].AngleX}" />
+                    <TextBlock DockPanel.Dock="Top" Text="{Binding Source={StaticResource MyIndex}, Path=[3]}" />
+                    <TextBlock DockPanel.Dock="Top" Text="{Binding Source={StaticResource MyIndex}, Path=[(sys:Int32)4]}" />
+                    <TextBlock DockPanel.Dock="Top" Text="{Binding Source={StaticResource MyIndex}, Path=[MailingAddress\,Street]}" />
+                    <TextBlock DockPanel.Dock="Top" Text="{Binding Source={StaticResource MyIndex}, Path=[(sys:Int32)3\,(sys:Int32)4]}" />
+                    <StackPanel DataContext="{StaticResource Leagues}">
+                        <TextBlock Text="My Soccer Leagues" />
+                        <ListBox IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Path=.}" />
+                        <TextBlock Text="{Binding Path=/}" />
+                        <ListBox
+                            DisplayMemberPath="Name"
+                            IsSynchronizedWithCurrentItem="True"
+                            ItemsSource="{Binding Path=/Divisions}" />
+                        <TextBlock Text="{Binding Path=/Divisions/Name}" />
+                        <ListBox
+                            DisplayMemberPath="Name"
+                            IsSynchronizedWithCurrentItem="True"
+                            ItemsSource="{Binding Path=/Divisions/Teams}" />
+                        <TextBlock Text="{Binding Path=/Divisions/Teams/Name}" />
+                        <TextBlock Text="{Binding Path=/Divisions/Teams/Score}" />
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+            <Border
+                Margin="2"
+                BorderBrush="DarkBlue"
+                BorderThickness="2">
+                <StackPanel>
+                    <Slider
+                        Name="Slider1"
+                        Maximum="100"
+                        Minimum="0"
+                        Value="20" />
+                    <TextBlock Text="{Binding ElementName=Slider1, Path=Value}" />
+                </StackPanel>
+            </Border>
+
+            <Border
+                Margin="2"
+                BorderBrush="DarkBlue"
+                BorderThickness="2">
+                <StackPanel>
+                    <TextBlock Text="{Binding}" />
+                    <!--<TextBlock Text="{DynamicResource}" />-->
+                    <!--<TextBlock Text="{MultiBinding}" />-->
+                    <TextBlock Text="{PriorityBinding}" />
+                    <!--<TextBlock Text="{StaticResource}" />-->
+                    <!--<TextBlock Text="{TemplateBinding}" />-->
+                    <!--<TextBlock Text="{d:DesignData}" />-->
+                    <!--<TextBlock Text="{d:DesignInstance}" />-->
+                    <!--<TextBlock Text="{d:SampleData}" />-->
+                    <!--<TextBlock Text="{local:}" />-->
+                    <!--<TextBlock Text="{mc:AlternateContent}" />-->
+                    <!--<TextBlock Text="{mc:Choice}" />-->
+                    <!--<TextBlock Text="{mc:Fallback}" />-->
+                    <TextBlock Text="{x:Null}" />
+                    <!--<TextBlock Text="{x:Static}" />-->
+                    <!--<TextBlock Text="{x:Code}" />-->
+                    <!--<TextBlock Text="{x:Reference}" />-->
+                    <!--<TextBlock Text="{x:XData}" />-->
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</Window>
